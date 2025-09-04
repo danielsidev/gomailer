@@ -25,12 +25,14 @@ type DataEmail struct {
 
 func SendEmailGmail(data DataEmail) error {
 	// Informações da conta Gmail
-	var imageUrl string
+	imgLogo := ""
 	from := os.Getenv("EMAIL_GMAIL_FROM")
 	imgUrl := fmt.Sprintf("%v", os.Getenv("IMG_URL_BASE"))
 	if data.Logo != nil {
 		var img string = fmt.Sprintf("%v", data.Logo)
-		imageUrl = fmt.Sprintf("%v", imgUrl+`/`+img)
+		imageUrl := fmt.Sprintf("%v", imgUrl+`/`+img)
+		imgLogo = `<img  src="` + imageUrl + `"  style="width:100px;position:relative; margin:10px auto; display:block;"/>`
+
 	}
 	css := `p{ font-size: 14px;}`
 	if data.Css != nil {
@@ -56,7 +58,7 @@ func SendEmailGmail(data DataEmail) error {
 		</head>
 		<body>
 			<div class="container">
-			 <img  src="` + imageUrl + `"  style="width:100px;position:relative; margin:10px auto; display:block;"/>
+			 ` + imgLogo + `
 				` + data.EmailBody + `				
 			</div>
 		</body>
