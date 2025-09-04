@@ -1,5 +1,5 @@
 # gomailer
-### Last version: **v1.0.4**
+### Last version: **v1.0.5**
  This is a module to send email with your email provider or Gmail.
  
  ## Requirements to Gmail
@@ -12,7 +12,7 @@
 
  Create a new project, add this dependecy(**check the last version**):
  ```
- go get github.com/danielsidev/gomailer@v1.0.4
+ go get github.com/danielsidev/gomailer@v1.0.5
 
  ```
 
@@ -22,7 +22,7 @@
 
  - **EMAIL_SENDER_FROM** this is sender
 	
- - **EMAIL_SENDER_PASSWORD** this is sender's password
+ - **EMAIL_SENDER_PASSWORD** this is sender's password (In the Gmail usecase, is the appPassword created)  
 
  **So, export these envs**
 
@@ -60,14 +60,14 @@ func main() {
 		Username:     "your recipient name",
 		SenderName:   "Who sends the email",
 		EmailSubject: "Subject",
-         SmtpHost:     "smtp.gmail.com",  // default gmail: "smtp.gmail.com"
-         SmtpPort:     "587",            // default gmail: "587" // Porta TLS/STARTTLS
+        SmtpHost:     "smtp.gmail.com",  // default gmail: "smtp.gmail.com"
+        SmtpPort:     "587",            // default gmail: "587" // Porta TLS/STARTTLS
 		Css:          &css,            // optional
 		Logo:         &logo,          // optional
 	}
 	erro := gomailer.SendEmail(data)
 	if erro != nil {
-		log.Printf("Erro ao enviar e-mail: %v", erro)
+		log.Printf("Ops! Houston, we have a problem::ERROR: %v", erro)
 		return
 	}
 	log.Println("Email stn with success!")

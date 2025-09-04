@@ -20,8 +20,8 @@ type DataEmail struct {
 	EmailBody    string  `json:"email_body"`
 	Username     string  `json:"user_name"`
 	SenderName   string  `json:"sender_name"`
-	SmtpHost     string  `json:smtp_host`
-	SmtpPort     string  `json:smtp_port`
+	SmtpHost     string  `json:"smtp_host"`
+	SmtpPort     string  `json:"smtp_port"`
 	Css          *string `json:"css,omitempty"`
 	Logo         *string `json:"logo,omitempty"`
 }
