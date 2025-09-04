@@ -39,7 +39,7 @@ func SendEmailGmail(data DataEmail) error {
 	}
 	css := `p{ font-size: 14px;}`
 	if data.Css != nil {
-		css = fmt.Sprintf("%v", data.Css)
+		css = *data.Css
 	}
 
 	to := []string{data.EmailTo}
