@@ -11,8 +11,8 @@ import (
 /*
 export envs:
 
-	EMAIL_GMAIL_FROM
-	EMAIL_GMAIL_PASSWORD
+	EMAIL_SENDER_FROM
+	EMAIL_SENDER_PASSWORD
 */
 type DataEmail struct {
 	EmailTo      string  `json:"email_to"`
@@ -81,7 +81,7 @@ func SendEmail(data DataEmail) error {
 	// Envia o e-mail
 	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, msg)
 	if err != nil {
-		fmt.Printf("Erro ao enviar e-mail: %s\n", err)
+		fmt.Printf("Email was not sent::ERROR: %s\n", err)
 		return err
 	}
 	fmt.Println("Email sent with success!")

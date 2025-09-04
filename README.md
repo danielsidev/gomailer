@@ -1,5 +1,5 @@
 # gomailer
-### Last version: **v1.0.5**
+### Last version: **v1.0.6**
  This is a module to send email with your email provider or Gmail.
  
  ## Requirements to Gmail
@@ -12,7 +12,7 @@
 
  Create a new project, add this dependecy(**check the last version**):
  ```
- go get github.com/danielsidev/gomailer@v1.0.5
+ go get github.com/danielsidev/gomailer@v1.0.6
 
  ```
 
@@ -70,7 +70,7 @@ func main() {
 		log.Printf("Ops! Houston, we have a problem::ERROR: %v", erro)
 		return
 	}
-	log.Println("Email stn with success!")
+	log.Println("Email sent with success!")
 
 }
 
