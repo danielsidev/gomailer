@@ -1,6 +1,7 @@
 package gomailer
 
 import (
+	"errors"
 	"fmt"
 	"net/smtp"
 	"os"
@@ -27,6 +28,11 @@ func SendEmailGmail(data DataEmail) error {
 	// Informações da conta Gmail
 	imgLogo := ""
 	from := os.Getenv("EMAIL_GMAIL_FROM")
+	password := os.Getenv("EMAIL_GMAIL_PASSWORD")
+	if from == "" || password == "" {
+		fmt.Printf("the EMAIL_GMAIL_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables.")
+		return errors.New("the EMAIL_GMAIL_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables")
+	}
 	imgUrl := fmt.Sprintf("%v", os.Getenv("IMG_URL_BASE"))
 	if data.Logo != nil {
 		var img string = fmt.Sprintf("%v", data.Logo)
@@ -38,7 +44,7 @@ func SendEmailGmail(data DataEmail) error {
 	if data.Css != nil {
 		css = fmt.Sprintf("%v", data.Css)
 	}
-	password := os.Getenv("EMAIL_GMAIL_PASSWORD")
+
 	to := []string{data.EmailTo}
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587" // Porta TLS/STARTTLS
