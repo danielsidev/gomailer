@@ -20,18 +20,20 @@ type DataEmail struct {
 	EmailBody    string  `json:"email_body"`
 	Username     string  `json:"user_name"`
 	SenderName   string  `json:"sender_name"`
+	SmtpHost     string  `json:smtp_host`
+	SmtpPort     string  `json:smtp_port`
 	Css          *string `json:"css,omitempty"`
 	Logo         *string `json:"logo,omitempty"`
 }
 
-func SendEmailGmail(data DataEmail) error {
+func SendEmail(data DataEmail) error {
 	// Informações da conta Gmail
 	imgLogo := ""
-	from := os.Getenv("EMAIL_GMAIL_FROM")
-	password := os.Getenv("EMAIL_GMAIL_PASSWORD")
+	from := os.Getenv("EMAIL_SENDER_FROM")
+	password := os.Getenv("EMAIL_SENDER_PASSWORD")
 	if from == "" || password == "" {
-		fmt.Printf("the EMAIL_GMAIL_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables.")
-		return errors.New("the EMAIL_GMAIL_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables")
+		fmt.Printf("the EMAIL_SENDER_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables.")
+		return errors.New("the EMAIL_SENDER_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables")
 	}
 
 	if data.Logo != nil {
@@ -43,8 +45,8 @@ func SendEmailGmail(data DataEmail) error {
 	}
 
 	to := []string{data.EmailTo}
-	smtpHost := "smtp.gmail.com"
-	smtpPort := "587" // Porta TLS/STARTTLS
+	smtpHost := data.SmtpHost // default gmail: "smtp.gmail.com"
+	smtpPort := data.SmtpPort // default gmail: "587" // Porta TLS/STARTTLS
 	subject := data.EmailSubject
 	body := `
 	<!DOCTYPE html>
