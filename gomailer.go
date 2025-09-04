@@ -35,9 +35,7 @@ func SendEmailGmail(data DataEmail) error {
 	}
 
 	if data.Logo != nil {
-		img := fmt.Sprintf("%v", data.Logo)
-		imageUrl := fmt.Sprintf("%v", img)
-		imgLogo = `<img  src="` + imageUrl + `"  style="width:100px;position:relative; margin:10px auto; display:block;"/>`
+		imgLogo = `<img  src="` + *data.Logo + `"  style="width:100px;position:relative; margin:10px auto; display:block;"/>`
 	}
 	css := `p{ font-size: 14px;}`
 	if data.Css != nil {
