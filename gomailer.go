@@ -33,12 +33,11 @@ func SendEmailGmail(data DataEmail) error {
 		fmt.Printf("the EMAIL_GMAIL_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables.")
 		return errors.New("the EMAIL_GMAIL_FROM or EMAIL_GMAIL_PASSWORD is not set! Please, export the enviroment variables")
 	}
-	imgUrl := fmt.Sprintf("%v", os.Getenv("IMG_URL_BASE"))
-	if data.Logo != nil {
-		var img string = fmt.Sprintf("%v", data.Logo)
-		imageUrl := fmt.Sprintf("%v", imgUrl+`/`+img)
-		imgLogo = `<img  src="` + imageUrl + `"  style="width:100px;position:relative; margin:10px auto; display:block;"/>`
 
+	if data.Logo != nil {
+		img := fmt.Sprintf("%v", data.Logo)
+		imageUrl := fmt.Sprintf("%v", img)
+		imgLogo = `<img  src="` + imageUrl + `"  style="width:100px;position:relative; margin:10px auto; display:block;"/>`
 	}
 	css := `p{ font-size: 14px;}`
 	if data.Css != nil {
